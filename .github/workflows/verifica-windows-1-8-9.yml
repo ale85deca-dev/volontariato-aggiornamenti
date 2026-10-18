@@ -1,0 +1,40 @@
+name: Verifica Windows 1.8.9
+on:
+  push:
+    branches: [verifica-1-8-9]
+permissions:
+  contents: read
+jobs:
+  verifica:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - name: Scarica e verifica il pacchetto del commit
+        shell: powershell
+        env:
+          RELEASE_SHA256: 05303279f49318fc427e3ecf1e8e4636a7c10ebaf23c8519e3485c3c2cc8ee14
+        run: |
+          $ErrorActionPreference='Stop'
+          $url="https://raw.githubusercontent.com/ale85deca-dev/volontariato-aggiornamenti/$env:GITHUB_SHA/VolontariatoLAN_1_8_9.zip"
+          Invoke-WebRequest -UseBasicParsing -Uri $url -OutFile pacchetto.zip
+          if ((Get-FileHash pacchetto.zip -Algorithm SHA256).Hash -ne $env:RELEASE_SHA256) {throw 'Impronta ZIP errata'}
+          Expand-Archive pacchetto.zip -DestinationPath estratto
+      - name: Compila con il compilatore .NET Framework di Windows
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $compiler=Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe'
+          $sources=@(Get-ChildItem estratto\VolontariatoLAN\Sorgenti -Filter '*.cs' | ForEach-Object {$_.FullName})
+          & $compiler /nologo /target:exe /optimize+ /r:System.Web.Extensions.dll /r:System.Security.dll /r:System.ServiceProcess.dll /r:System.Core.dll /r:System.IO.Compression.dll /r:System.Xml.dll /r:System.Xml.Linq.dll /out:Volontariato.Server.exe @sources
+          if ($LASTEXITCODE -ne 0) {throw 'Compilazione non riuscita'}
+      - name: Verifica tutte le suite native
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          & .\Volontariato.Server.exe --self-test
+          if ($LASTEXITCODE -ne 0) {throw 'Verifiche native non superate'}
+      - name: Verifica il componente aggiornamenti PowerShell
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          & .\estratto\VolontariatoLAN\VerificaAggiornamenti.ps1
