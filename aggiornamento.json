@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "application": "VolontariatoLAN",
-  "version": "1.8.8",
+  "version": "1.8.9",
   "minimumVersion": "1.8.6",
-  "packageUrl": "https://ale85deca-dev.github.io/volontariato-aggiornamenti/VolontariatoLAN_1_8_8.zip",
-  "size": 602570,
-  "sha256": "479e739997bc7e64baa061a3f1545965233ee0f875f0c4d55617c04edaa5983f",
-  "notes": "Attivita: dopo Nuova prenotazione scegli Assistenza evento o Trasporto sanitario; dopo Registra attivita scegli Assistenza evento, Trasporto sanitario o Emergenza 118. La scheda si apre con la tipologia selezionata."
+  "packageUrl": "https://ale85deca-dev.github.io/volontariato-aggiornamenti/VolontariatoLAN_1_8_9.zip",
+  "size": 609252,
+  "sha256": "e3f848ec30c42f7d2411a642719bb98a9e9db0d1395fdcdc2cb0034aeedc6c70",
+  "notes": "Trasporto sanitario: Visita, Trasferimento, Dimissione e Altro; orario visita condizionale. Anteprima/stampa prenotazione, elenco servizi da svolgere e completamento con dati obbligatori e appello. Attivita svolte ordinate per data effettiva."
 }
