@@ -12,7 +12,7 @@ jobs:
       - name: Scarica e verifica il pacchetto del commit
         shell: powershell
         env:
-          RELEASE_SHA256: 05303279f49318fc427e3ecf1e8e4636a7c10ebaf23c8519e3485c3c2cc8ee14
+          RELEASE_SHA256: e3f848ec30c42f7d2411a642719bb98a9e9db0d1395fdcdc2cb0034aeedc6c70
         run: |
           $ErrorActionPreference='Stop'
           $url="https://raw.githubusercontent.com/ale85deca-dev/volontariato-aggiornamenti/$env:GITHUB_SHA/VolontariatoLAN_1_8_9.zip"
