@@ -1,11 +1,10 @@
 {
   "schema": 1,
   "application": "VolontariatoLAN",
-  "version": "1.8.6",
+  "version": "1.8.7",
   "minimumVersion": "1.8.6",
-  "releasedAt": "2026-10-16T10:50:00Z",
-  "packageUrl": "https://ale85deca-dev.github.io/volontariato-aggiornamenti/VolontariatoLAN_1_8_6.zip",
-  "size": 601562,
-  "sha256": "717742a002350b3b34febcd9aa5c7b0f6750e710d3945dcd307dda3aada7637a",
-  "notes": "Versione iniziale del canale aggiornamenti: attivazione del pulsante Aggiorna gestionale. Conserva la modalita costruzione."
+  "packageUrl": "https://ale85deca-dev.github.io/volontariato-aggiornamenti/VolontariatoLAN_1_8_7.zip",
+  "size": 601933,
+  "sha256": "2a5210af5259da7763589a54515ccdff30f57f4d48c5df48eb61b9387d07fb1b",
+  "notes": "Nuova prenotazione: rimossa Emergenza 118 dal menu Tipologia. Restano Trasporto sanitario e Assistenza evento."
 }
