@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "application": "VolontariatoLAN",
-  "version": "1.8.7",
+  "version": "1.8.8",
   "minimumVersion": "1.8.6",
-  "packageUrl": "https://ale85deca-dev.github.io/volontariato-aggiornamenti/VolontariatoLAN_1_8_7.zip",
-  "size": 601933,
-  "sha256": "2a5210af5259da7763589a54515ccdff30f57f4d48c5df48eb61b9387d07fb1b",
-  "notes": "Nuova prenotazione: rimossa Emergenza 118 dal menu Tipologia. Restano Trasporto sanitario e Assistenza evento."
+  "packageUrl": "https://ale85deca-dev.github.io/volontariato-aggiornamenti/VolontariatoLAN_1_8_8.zip",
+  "size": 602570,
+  "sha256": "479e739997bc7e64baa061a3f1545965233ee0f875f0c4d55617c04edaa5983f",
+  "notes": "Attivita: dopo Nuova prenotazione scegli Assistenza evento o Trasporto sanitario; dopo Registra attivita scegli Assistenza evento, Trasporto sanitario o Emergenza 118. La scheda si apre con la tipologia selezionata."
 }
