@@ -1,0 +1,19 @@
+{
+  "progetto": "VolontariatoLAN",
+  "stato": "progetto-vuoto",
+  "decisione": "Ricostruire il programma da zero",
+  "data": "2026-10-24",
+  "puntoRipristino": {
+    "versione": "1.8.13",
+    "repository": "ale85deca-dev/volontariato-aggiornamenti",
+    "ramo": "ripristino-1-8-13-2026-10-24",
+    "commit": "d265252f49b09bc83929f3f086a8983d4e904a19",
+    "pacchetto": "VolontariatoLAN_1_8_13.zip",
+    "sha256": "9d1a771b21a748188c9e0a334cfe9e23a345dc7ab838f6b1f2c4174760820de8",
+    "byte": 619823,
+    "contenuto": "Programma, sorgenti e documentazione distribuiti",
+    "collaudoWindowsRun": 40104895092
+  },
+  "installazioneEsistente": "1.8.13 mantenuta sul canale aggiornamenti; nessuna modifica agli archivi sul PC",
+  "funzionalitaNuovoProgetto": []
+}
