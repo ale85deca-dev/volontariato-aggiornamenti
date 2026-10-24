@@ -1,0 +1,58 @@
+name: Verifica Windows 1.8.13
+on:
+  push:
+    branches: [verifica-1-8-13]
+permissions:
+  contents: read
+jobs:
+  verifica:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - name: Scarica e verifica il pacchetto del commit
+        shell: powershell
+        env:
+          RELEASE_SHA256: 9d1a771b21a748188c9e0a334cfe9e23a345dc7ab838f6b1f2c4174760820de8
+        run: |
+          $ErrorActionPreference='Stop'
+          $base="https://raw.githubusercontent.com/ale85deca-dev/volontariato-aggiornamenti/$env:GITHUB_SHA"
+          Invoke-WebRequest -UseBasicParsing -Uri "$base/VolontariatoLAN_1_8_13.zip" -OutFile pacchetto.zip
+          if ((Get-FileHash pacchetto.zip -Algorithm SHA256).Hash -ne $env:RELEASE_SHA256) {throw 'Impronta ZIP errata'}
+          Expand-Archive pacchetto.zip -DestinationPath estratto
+          Invoke-WebRequest -UseBasicParsing -Uri "$base/wizard-browser-test.html" -OutFile wizard-browser-test.html
+      - name: Compila con .NET Framework di Windows
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $compiler=Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe'
+          $sources=@(Get-ChildItem estratto\VolontariatoLAN\Sorgenti -Filter '*.cs' | ForEach-Object {$_.FullName})
+          & $compiler /nologo /target:exe /optimize+ /r:System.Web.Extensions.dll /r:System.Security.dll /r:System.ServiceProcess.dll /r:System.Core.dll /r:System.IO.Compression.dll /r:System.Xml.dll /r:System.Xml.Linq.dll /out:Volontariato.Server.exe @sources
+          if ($LASTEXITCODE -ne 0) {throw 'Compilazione non riuscita'}
+      - name: Verifica le 19 suite native
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          & .\Volontariato.Server.exe --self-test
+          if ($LASTEXITCODE -ne 0) {throw 'Verifiche native non superate'}
+      - name: Verifica aggiornamenti PowerShell
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          & .\estratto\VolontariatoLAN\VerificaAggiornamenti.ps1
+      - name: Verifica percorso guidato nel browser reale
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $candidates=@("${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe","$env:ProgramFiles\Microsoft\Edge\Application\msedge.exe","$env:ProgramFiles\Google\Chrome\Application\chrome.exe")
+          $browser=$candidates | Where-Object {Test-Path $_} | Select-Object -First 1
+          if (-not $browser) {throw 'Browser Chromium non disponibile per il collaudo'}
+          $page=([Uri](Resolve-Path wizard-browser-test.html).Path).AbsoluteUri
+          $profile=Join-Path $env:RUNNER_TEMP 'profilo-browser-guidata'
+          $process=Start-Process -FilePath $browser -ArgumentList @('--headless','--disable-gpu','--no-sandbox','--allow-file-access-from-files','--disable-web-security','--disable-background-networking','--disable-extensions',"--user-data-dir=$profile",'--virtual-time-budget=20000','--dump-dom',$page) -Wait -PassThru -RedirectStandardOutput browser-dom.txt -RedirectStandardError browser-log.txt
+          $html=Get-Content browser-dom.txt -Raw -Encoding UTF8
+          $result=[regex]::Match($html,'(?s)<pre id="wizard-result".*?</pre>').Value
+          Write-Output $result
+          if ($process.ExitCode -ne 0 -or $html -notmatch 'id="wizard-result"[^>]*data-result="passed"') {
+            Get-Content browser-log.txt -Tail 20
+            throw 'Percorso guidato nel browser non superato'
+          }
