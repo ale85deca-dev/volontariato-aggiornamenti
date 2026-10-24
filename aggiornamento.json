@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "application": "VolontariatoLAN",
-  "version": "1.8.12",
+  "version": "1.8.13",
   "minimumVersion": "1.8.6",
-  "packageUrl": "https://ale85deca-dev.github.io/volontariato-aggiornamenti/VolontariatoLAN_1_8_12.zip",
-  "size": 619300,
-  "sha256": "1fdbaa0b0e06e4508a3e2d91d628204357c11e646408909c032184f52e7f4c4b",
-  "notes": "Nuova prenotazione, Altri dati del servizio: rimossi blocco prezzi, tariffario, IVA, bollo, note e testo finale. Conservati dati operativi e salvataggio guidato."
+  "packageUrl": "https://ale85deca-dev.github.io/volontariato-aggiornamenti/VolontariatoLAN_1_8_13.zip",
+  "size": 619823,
+  "sha256": "9d1a771b21a748188c9e0a334cfe9e23a345dc7ab838f6b1f2c4174760820de8",
+  "notes": "Nuova prenotazione trasporto sanitario: rimossi Dettagli del servizio, descrizione, richiedente, telefono, protocollo 118 ed evento/luogo dal passaggio 3. Salvataggio con descrizione ricavata dalla tipologia."
 }
