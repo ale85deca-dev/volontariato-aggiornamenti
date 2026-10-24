@@ -63,4 +63,5 @@ return {ok:true,status:200,json:async()=>JSON.parse(JSON.stringify(value))};};
   check(window.wizardUnexpected.length===0,'Autocompletamento e CF non richiedono servizi Internet');
   document.querySelector('#wizard-result').textContent=results.join('\n')+'\nSUPERATI '+results.length+' CONTROLLI NEL BROWSER';document.querySelector('#wizard-result').dataset.result='passed';
  }catch(ex){document.querySelector('#wizard-result').textContent=results.join('\n')+'\nERRORE: '+ex.stack;document.querySelector('#wizard-result').dataset.result='failed';}
-})(),0));</script></body></html>
+})()
+},0));</script></body></html>
