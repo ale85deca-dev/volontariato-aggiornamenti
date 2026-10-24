@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "application": "VolontariatoLAN",
-  "version": "1.8.9",
+  "version": "1.8.10",
   "minimumVersion": "1.8.6",
-  "packageUrl": "https://ale85deca-dev.github.io/volontariato-aggiornamenti/VolontariatoLAN_1_8_9.zip",
-  "size": 609252,
-  "sha256": "e3f848ec30c42f7d2411a642719bb98a9e9db0d1395fdcdc2cb0034aeedc6c70",
-  "notes": "Trasporto sanitario: Visita, Trasferimento, Dimissione e Altro; orario visita condizionale. Anteprima/stampa prenotazione, elenco servizi da svolgere e completamento con dati obbligatori e appello. Attivita svolte ordinate per data effettiva."
+  "packageUrl": "https://ale85deca-dev.github.io/volontariato-aggiornamenti/VolontariatoLAN_1_8_10.zip",
+  "size": 617982,
+  "sha256": "7bf7421faed0865c2e649b3a60fabb796621c1e9a7786994d85c825b2b4b09e4",
+  "notes": "Nuova prenotazione guidata: Servizio, Anagrafica paziente con sesso e calcolo CF, poi gli altri dati. Annulla/Indietro/Avanti, indirizzi suggeriti dall’archivio offline e salvataggio finale unico senza doppioni."
 }
