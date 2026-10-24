@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "application": "VolontariatoLAN",
-  "version": "1.8.10",
+  "version": "1.8.11",
   "minimumVersion": "1.8.6",
-  "packageUrl": "https://ale85deca-dev.github.io/volontariato-aggiornamenti/VolontariatoLAN_1_8_10.zip",
-  "size": 617982,
-  "sha256": "7bf7421faed0865c2e649b3a60fabb796621c1e9a7786994d85c825b2b4b09e4",
-  "notes": "Nuova prenotazione guidata: Servizio, Anagrafica paziente con sesso e calcolo CF, poi gli altri dati. Annulla/Indietro/Avanti, indirizzi suggeriti dall’archivio offline e salvataggio finale unico senza doppioni."
+  "packageUrl": "https://ale85deca-dev.github.io/volontariato-aggiornamenti/VolontariatoLAN_1_8_11.zip",
+  "size": 618955,
+  "sha256": "408210a154479954643c96dd8421259f456e71be15fbbc192234d295fa26597b",
+  "notes": "Inserimento retroattivo dei servizi anche prima del 1 gennaio 2027: prenotazioni, fogli viaggio, attività e appelli mantengono le date effettive e gli archivi per anno e mese di svolgimento."
 }
