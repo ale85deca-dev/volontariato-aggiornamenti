@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#163c37"><link rel="manifest" href="estratto/VolontariatoLAN/App/manifest.webmanifest"><link rel="apple-touch-icon" href="estratto/VolontariatoLAN/App/icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><title>Volontariato · Gestionale di sede</title><link rel="stylesheet" href="estratto/VolontariatoLAN/App/style.css"><script>
+window.wizardFixture={"revision": 5, "settings": {"association": "Associazione di prova", "address": "Via Sede 1", "taxCode": "00000000000", "invoicePrefix": "F", "receiptPrefix": "R", "baseRate": 20, "kmRate": 1.25, "hourRate": 5, "vatRate": 22, "taxReason": "", "paymentTerms": "Bonifico a 30 giorni", "checklistEnabled": false, "activityStartDate": "2027-01-01"}, "tables": {"patients": [{"id": "person-existing", "version": 1, "surname": "Bianchi", "name": "Anna", "birthDate": "1970-02-01", "sex": "F", "birthPlace": "ROMA", "birthPlaceType": "Italia", "birthPlaceCode": "H501", "birthProvince": "RM", "taxCode": "CF-ANNA-TEST", "address": "Via Archivio 10", "city": "Roma", "postcode": "00100"}], "volunteers": [{"id": "v1", "surname": "Verdi", "name": "Luca", "qualification": "Soccorritore", "version": 1}], "vehicles": [{"id": "m1", "plate": "TEST001", "initialKm": 1000, "version": 1}], "payers": [{"id": "e1", "name": "Ente <test>", "address": "Via Esempio 1", "city": "Roma", "taxCode": "00000000001", "version": 1}], "bookings": [], "trips": [], "activities": [], "documents": [], "tariffs": [], "attendance": [], "checklists": [], "checklistTemplates": [], "fuel": [], "vehicleCare": [], "siteCleaning": [], "equipment": [], "stockItems": [], "stockMovements": [], "qualifications": [], "vehicleDowntime": [], "activityGroups": [], "recurrenceBatches": [], "attachments": [], "members": [], "dues": [], "donations": [], "suppliers": [], "expenses": [], "ledgerEntries": [], "cashOpenings": [], "budgetItems": [], "bankOpenings": [], "transfers": [], "posSettlements": [], "budgetPlans": [], "plannedShifts": [], "stockTransfers": [], "volunteerAvailability": [], "shiftNeeds": []}, "user": {"id": "user-test", "name": "Prova", "username": "prova", "role": "admin"}, "users": [{"id": "u1", "username": "admin", "name": "Operatore", "role": "admin"}], "audit": [{"at": "2026-10-06T10:00:00Z", "user": "admin", "action": "Salvataggio", "table": "patients", "id": "p1"}], "backup": {"localDailyCopies": 1}, "constructionMode": true, "csrf": "csrf-test"};window.wizardSaves=[];window.wizardUnexpected=[];
+window.fetch=async function(url,opts={}){const p=String(url),body=opts.body?JSON.parse(opts.body):{};let value;
+if(p==='/api/status')value={setupRequired:false,constructionMode:true,version:'1.8.11'};
+else if(p==='/api/construction-session')value={csrf:'csrf-test'};
+else if(p==='/api/state')value=window.wizardFixture;
+else if(p==='/api/booking-reservation'){window.wizardSaves.push(body);let patient=null;if(body.patient){patient={...body.patient,id:body.patient.id||'new-person-'+window.wizardSaves.length,version:1};if(!window.wizardFixture.tables.patients.some(p=>p.id===patient.id))window.wizardFixture.tables.patients.push(patient);}const b={...body.booking,id:'new-booking-'+window.wizardSaves.length,version:1,patientId:patient?.id||''};window.wizardFixture.tables.bookings.push(b);value={result:{booking:b,patient}};}
+else {window.wizardUnexpected.push(p);throw new Error('Richiesta inattesa: '+p);}
+return {ok:true,status:200,json:async()=>JSON.parse(JSON.stringify(value))};};
+</script><script src="estratto/VolontariatoLAN/App/app.js" defer></script><script src="estratto/VolontariatoLAN/App/operazioni.js" defer></script><script src="estratto/VolontariatoLAN/App/prezzi.js" defer></script><script src="estratto/VolontariatoLAN/App/fatture.js" defer></script><script src="estratto/VolontariatoLAN/App/automezzi.js" defer></script><script src="estratto/VolontariatoLAN/App/sede.js" defer></script><script src="estratto/VolontariatoLAN/App/posta.js" defer></script><script src="estratto/VolontariatoLAN/App/completo.js" defer></script><script src="estratto/VolontariatoLAN/App/cassa.js" defer></script><script src="estratto/VolontariatoLAN/App/evoluzione.js" defer></script><script src="estratto/VolontariatoLAN/App/aggiornamenti.js" defer></script><script src="estratto/VolontariatoLAN/App/prenotazioni.js" defer></script><script src="estratto/VolontariatoLAN/App/luoghi-cf.js" defer></script><script src="estratto/VolontariatoLAN/App/codice-fiscale.js" defer></script><script src="estratto/VolontariatoLAN/App/prenotazione-guidata.js" defer></script></head><body>
+<div id="auth"></div><div id="shell" hidden><aside><a class="brand" href="#home"><span class="mark">✚</span><span>Volontariato<small>GESTIONALE DI SEDE</small></span></a><div class="side-label">OPERATIVITÀ</div><nav id="nav"></nav><div class="side-foot"><span class="online-dot"></span> Rete locale<br><small>Nessun servizio cloud</small></div></aside><div class="workspace"><header><div><span class="eyebrow">IL TUO ARCHIVIO, IN SEDE</span><strong id="association-name">Associazione di volontariato</strong></div><div class="header-right"><button id="install-app" hidden>Installa app</button><span id="connection" class="badge ok">Collegato</span><button id="update-program" data-action="update-page" hidden>Aggiorna gestionale</button><span id="account"></span><button class="quiet" id="logout">Esci</button></div></header><div id="construction-mode-banner" class="construction-mode-banner" hidden><strong>Modalità costruzione · accesso senza login</strong><span>Archivio prove separato · accesso completo dal PC · non inserire dati reali.</span></div><main id="main"></main><footer>Volontariato LAN 1.8.11 · Archivio condiviso sul PC centrale <span id="sync"></span></footer></div></div>
+<dialog id="dialog"><div id="dialog-content"></div></dialog><div id="toast" role="status" aria-live="polite"></div><section id="print"></section>
+<pre id="wizard-result" data-result="pending">In attesa</pre><script>window.addEventListener("load",()=>setTimeout(()=>{(async()=>{
+ const results=[];const check=(value,label)=>{if(!value)throw new Error(label);results.push('OK '+label);};
+ const pause=()=>new Promise(r=>setTimeout(r,0));
+ const until=async fn=>{for(let i=0;i<80;i++){if(fn())return;await pause();}throw new Error('Attesa scaduta');};
+ const set=(name,value)=>{const f=document.querySelector('dialog form'),el=f.elements[name];if(!el)throw new Error('Campo assente: '+name);el.value=value;el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));};
+ const click=action=>{const b=document.querySelector('[data-action="'+action+'"]');if(!b)throw new Error('Pulsante assente: '+action);b.click();};
+ const next=async()=>{document.querySelector('dialog form [type="submit"]').click();await pause();};
+ const open=async type=>{openActivitiesMenu();click('activities-new-booking');document.querySelector('[data-action="activities-type"][data-type="'+type+'"]').click();await pause();};
+ const service=()=>{set('bookedAt','2026-10-24T08:00');set('start','2026-09-28T09:00');set('visitAt','2026-09-28T10:00');};
+ const person=()=>{set('surname','Rossi');set('name','Mario');set('birthDate','1980-01-01');set('sex','M');set('birthPlace','Roma');set('phone','0123456789');set('email','paziente@example.org');};
+ try{
+  await until(()=>state&&document.querySelector('#shell').hidden===false);
+  await open('Trasporto sanitario');service();
+  let f=document.querySelector('dialog form');check(!f.elements.surname&&!f.elements.title&&!f.elements.origin,'Primo passaggio contiene solo Servizio');
+  check(f.querySelector('[type="submit"]').textContent==='Avanti','Avanti resta visibile nel passaggio Servizio');
+  check(f.textContent.includes('retroattivi'),'Indicazione sulle date retroattive nel modulo');
+  await next();person();click('bw-calculate-cf');
+  check(document.querySelector('dialog form').elements.taxCode.value==='RSSMRA80A01H501U','Calcolo CF nel secondo passaggio con sesso visibile');
+  check(document.querySelectorAll('dialog [name="sex"]').length===1,'Nessun campo sesso duplicato');
+  set('residenceText','Via Archivio');click('bw-address-use');
+  check(bookingWizard.patient.city==='Roma'&&bookingWizard.patient.postcode==='00100','Autocompletamento locale conserva comune e CAP');
+  check(bookingWizard.patient.name==='Mario'&&!bookingWizard.patient.id,'Indirizzo suggerito non cambia identita della persona');
+  click('bw-back');await pause();check(document.querySelector('dialog form').elements.start.value==='2026-09-28T09:00','Indietro conserva il servizio');
+  await next();check(document.querySelector('dialog form').elements.surname.value==='Rossi'&&document.querySelector('dialog form').elements.sex.value==='M','Avanti ripristina anagrafica e sesso');
+  check(document.querySelector('dialog form').elements.residenceText.value.includes('Via Archivio'),'Indirizzo conservato tra i passaggi');
+  click('bw-cancel');check(window.wizardFixture.tables.patients.length===1&&window.wizardSaves.length===0&&!document.querySelector('#dialog').open,'Annulla non salva persona o prenotazione');
+  await open('Trasporto sanitario');service();await next();person();click('bw-calculate-cf');set('residenceText','Via Nuova 5, 00100 Roma');await next();
+  check(document.querySelector('dialog form').querySelector('[data-price-editor]'),'Terzo passaggio conserva i dati economici');
+  set('title','Prenotazione guidata browser TEST');set('end','2026-09-28T11:00');set('origin','Sede TEST');set('destination','Ospedale TEST');
+  click('bw-back');await next();check(document.querySelector('dialog form').elements.title.value==='Prenotazione guidata browser TEST','Indietro dal terzo passaggio conserva i dettagli');
+  await next();await until(()=>window.wizardSaves.length===1&&document.querySelector('#dialog-content').textContent.includes('Anteprima prenotazione'));
+  const saved=window.wizardSaves[0];check(saved.patient.sex==='M'&&saved.patient.phone==='0123456789'&&saved.patient.address.includes('Via Nuova'),'Invio finale contiene tutti i dati della persona');
+  check(saved.booking.bookedAt==='2026-10-24T08:00'&&saved.booking.start.slice(0,10)<state.settings.activityStartDate,'Servizio precedente al 2027 salvato senza alterare data prenotazione');
+  check(activityCalendarGroups('bookings',[{...saved.booking,id:'retro-browser',status:'Prenotata'}])[0].month==='2026-09','Servizio retroattivo raggruppato nel mese effettivo');
+  check(saved.booking.start==='2026-09-28T09:00'&&saved.booking.end==='2026-09-28T11:00'&&saved.booking.visitAt==='2026-09-28T10:00','Invio finale conserva gli orari dei passaggi');
+  check(window.wizardFixture.tables.activities.length===0&&window.wizardFixture.tables.patients.length===2,'Il salvataggio della prenotazione non crea attivita svolte');
+  click('close');await open('Trasporto sanitario');service();await next();set('surname','Bianchi');set('name','Anna');
+  click('bw-person-use');check(bookingWizard.patient.id==='person-existing','Richiamo anagrafica esistente senza nuova scheda');
+  click('bw-cancel');check(window.wizardSaves.length===1,'Annullare il richiamo non scrive negli archivi');
+  await open('Trasporto sanitario');service();click('bw-back');
+  document.querySelector('[data-action="activities-type"][data-type="Trasporto sanitario"]').click();await pause();
+  check(document.querySelector('dialog form').elements.start.value==='2026-09-28T09:00','Indietro alla scelta tipologia conserva la bozza');click('bw-cancel');
+  await open('Assistenza evento');set('bookedAt','2027-01-02T08:00');set('start','2027-01-06T09:00');set('end','2027-01-06T11:00');await next();click('bw-without-person');
+  set('title','Evento senza assistito TEST');await next();await until(()=>window.wizardSaves.length===2);
+  check(window.wizardSaves[1].patient===null&&window.wizardSaves[1].booking.end==='2027-01-06T11:00','Evento mantiene orario e possibilita di non associare un assistito');
+  check(window.wizardFixture.tables.patients.length===2,'Evento senza assistito non aggiunge anagrafiche');
+  check(window.wizardUnexpected.length===0,'Autocompletamento e CF non richiedono servizi Internet');
+  document.querySelector('#wizard-result').textContent=results.join('\n')+'\nSUPERATI '+results.length+' CONTROLLI NEL BROWSER';document.querySelector('#wizard-result').dataset.result='passed';
+ }catch(ex){document.querySelector('#wizard-result').textContent=results.join('\n')+'\nERRORE: '+ex.stack;document.querySelector('#wizard-result').dataset.result='failed';}
+})()},0));</script></body></html>
